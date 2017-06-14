@@ -1,0 +1,43 @@
+/*   { switch(n){
+        case 1:
+            printf('Hello');
+            break;
+        case 2:
+           printf('I love cats and dogs');
+           break;
+        default:
+           printf('aliens exist');
+           break;
+ 
+    }
+    if (n==1)
+        print('hello');
+    else if(n==2)
+        printf('I love cats and dogs');
+    else
+        printf('aliens exist')
+}
+*/
+
+
+.syntax unified
+ .cpu cortex-m0
+ .global asm_sum
+ .thumb
+ .thumb_func
+ 
+ asm_sum:
+ 	push	{r7, lr} //push onto stack
+ 	sub sp, sp, #8 //add 8 to stack pointer
+ 	add r7, sp, #0  //add 0 to stack pointer
+ 	str r0, [r7, #4] //store r0 into r7+4
+ 	str r1, [r7]
+ 	ldr r2, [r7, #4] //take r7+4 and load into register 2
+ 	ldr r3, [r7]
+ 	add r3, r2, r3   //add r2,  r3  in r3
+ 	mov r0, r3
+ 	mov sp, r7       //setting stack pointer  to r7
+ 	add sp, sp, #8   //collapse stack
+ 	pop {r7, lr}     //pop r7 off of stack 
+ 	
+ 	
