@@ -1,8 +1,13 @@
 /*
  * main.c
  */
+
+extern int fibonacci(int n);
+
 int main(void) {
-	
+	for(int i = 20, i = 0, i++){
+	    fibronocci(i);
+	}
 	return 0;
 }
 

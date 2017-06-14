@@ -1,31 +1,38 @@
-mov r2, n
-mov r0, #0
-mov r1, #1
-
-beq r2, r0, L_ZERO
-beq r2, r1, ONE
+\\r0 is n
 
 TOP:
+    cmp r0, #0
+    beq L_ZERO
+    blt EXIT
+    cmp r0, #1
+    beq ONE
+    bgt RECURSE
 
 L_ZERO:
 	\\make return register r10
-	mov r10, #1
-	push r10
+	mov r0, #1
+	push r0
+	sub r0, r0, #1
+	br TOP
 ONE:
-	mov r10, #1
-	push r10
+	mov r0, #1
+	push r0
+	sub r0, r0, #1
+	br TOP
 RECURSE:
 	\\get fib -1
-	sub r2,r2, #1
+	sub r0,r0, #1
 	br TOP
 
 	\\get fib -2
-	sub r2, r2, #1
+	sub r0, r0, #1
 	br TOP
 
 	\\gets the last two things pushed, n-2 and n-1
 	pop r8
 	pop r9
 	\\add them together to get fib(n)
-	add r10, r8, r9
-	ret
+	add r0, r8, r9
+EXIT:
+    pop\\????
+    mov pc, lr
