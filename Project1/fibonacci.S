@@ -1,50 +1,62 @@
-\\r0 is n
+;r0 is n
+;mov r0, #2
 
-push lr
-CHECK_0:
+CHECK_0
     cmp r0, #0
-    mov r3, #1
-    beq CHECK_N
-CHECK_1:
-	cmp R0, #1
-	mov r4, #1
-	beq CHECK_N
-CHECK_N:
-    or r5, r3, r4
-    cmp r5, #0
     beq TOP
-    pop lr
-TOP:
+CHECK_1
+	cmp R0, #1
+	beq TOP
+SAVE
+    push lr
+    ;sub sp, sp, #4
+    s;tr lr, [sp, #4]
+TOP
     cmp r0, #0
     beq L_ZERO
     cmp r0, #1
     beq ONE
     bgt RECURSE
 
-L_ZERO:
-	\\make return register r10
+L_ZERO
 	mov r0, #1
 	push r0
-	ret
-ONE:
+	;sub sp, sp, #4
+	s;tr r0, [sp, #4]
+	call TOP
+ONE
 	mov r0, #1
 	push r0
-	ret
-RECURSE:
-	\\get fib -1
+	;sub sp, sp, #4
+	;str r0, [sp, #4]
+	call TOP
+RECURSE
+	;get fib -1
 	sub r0,r0, #1
 	call TOP
 
-	\\get fib -2
+	;get fib -2
 	sub r0, r0, #1
-	call TOP
+    call TOP
 
-	\\gets the last two things pushed, n-2 and n-1
+	;gets the last two things pushed, n-2 and n-1
 	pop r8
+    ;ldr r8, [sp, #0]
+    ;add sp, sp, #4
 	pop r9
-	\\add them together to get fib(n)
+    ;ldr r9, [sp, #0]
+    ;add sp, sp, #4
+	;add them together to get fib(n)
 	add r0, r8, r9
-EXIT:
+	push r0
+	;sub sp, sp, #4
+	;str r0, [sp, #4]
+EXIT
     pop r0
-    pop lr \\get OG
+    ;ldr r0, [sp, #0]
+    ;add sp, sp, #4
+    pop lr
+    ;ldr lr, [sp, #0]
+    ;add sp, sp, #4
     mov pc, lr
+

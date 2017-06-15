@@ -1,6 +1,9 @@
 /*
  * main.c
  */
+ #define RED_LED   GPIO_PIN_1
+ #define BLUE_LED  GPIO_PIN_2
+ #define GREEN_LED GPIO_PIN_3
 
 extern int fibonacci(int n);
 
@@ -21,8 +24,11 @@ void blink(int x){
        x = (x-y)/10;
     }
 
-    registerbusinessforLED = shift in mout one bit at a time;
-    have a wait
+    int total = len(mout);
+
+    for(total, total>= 0, total--){
+        if()
+    }
 
 
 }
