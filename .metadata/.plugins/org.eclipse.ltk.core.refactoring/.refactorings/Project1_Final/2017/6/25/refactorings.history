@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Project1_Final/Fibonacci.asm&apos; to &apos;fibonacci.asm&apos;" description="Rename resource &apos;Fibonacci.asm&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Fibonacci.asm" name="fibonacci.asm" stamp="1498027944888" updateReferences="true"/>
+</session>
