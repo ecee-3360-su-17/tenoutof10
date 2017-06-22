@@ -1,62 +1,56 @@
-;r0 is n
-;mov r0, #2
-
-CHECK_0
+ .global fibonacci
+fibonacci:
+check0:
+    ;check to see if n is 0, if it is, don't push the return address onto the stack
     cmp r0, #0
-    beq TOP
-CHECK_1
-	cmp R0, #1
-	beq TOP
-SAVE
-    push lr
-    ;sub sp, sp, #4
-    s;tr lr, [sp, #4]
-TOP
-    cmp r0, #0
-    beq L_ZERO
-    cmp r0, #1
-    beq ONE
-    bgt RECURSE
-
-L_ZERO
+    beq lzero
+check1:
+    ;check to see if n is 1, if it is, don't push the return address onto the stack
+	cmp r0, #1
+	beq one
+save1:
+    ;save the return address back to where we were in main onto the stack
+    push {lr}
+    br recurse
+lzero:
+    ;push the value of 1 onto the stack and return
 	mov r0, #1
-	push r0
-	;sub sp, sp, #4
-	s;tr r0, [sp, #4]
-	call TOP
-ONE
+	push {r0}
+	mov pc, lr
+one:
+    ;push the value of 1 onto the stack and return
 	mov r0, #1
-	push r0
-	;sub sp, sp, #4
-	;str r0, [sp, #4]
-	call TOP
-RECURSE
-	;get fib -1
+	push {r0}
+	mov pc, lr
+recurse:
+    push {r0}
+    ;get the value of fib(n-1)
 	sub r0,r0, #1
-	call TOP
-
-	;get fib -2
+	bl fibonacci
+	;get the value of fib(n-2)
 	sub r0, r0, #1
-    call TOP
-
-	;gets the last two things pushed, n-2 and n-1
-	pop r8
-    ;ldr r8, [sp, #0]
-    ;add sp, sp, #4
-	pop r9
-    ;ldr r9, [sp, #0]
-    ;add sp, sp, #4
+    bl fibonacci
+    ;get fib(n-1) and fib(n-2) off of the stack
+	pop {r8}
+	pop {r9}
 	;add them together to get fib(n)
 	add r0, r8, r9
-	push r0
-	;sub sp, sp, #4
-	;str r0, [sp, #4]
-EXIT
-    pop r0
-    ;ldr r0, [sp, #0]
-    ;add sp, sp, #4
-    pop lr
-    ;ldr lr, [sp, #0]
-    ;add sp, sp, #4
-    mov pc, lr
+	pop{lr}
+	push {r0}
+	mov pc, lr
 
+exit:
+    pop {r0}
+    ;return
+    pop {pc}
+
+
+
+	mov r1,r0
+	pop {r0}
+	push{r1}
+	sub r0, r0,#2
+	bl fib
+	pop {r1}
+	add r0,r0,r1
+	pop {pc}

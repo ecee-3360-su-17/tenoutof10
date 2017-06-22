@@ -24,4 +24,26 @@
 		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>asmdefs.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/tiva-c/inc/asmdefs.h</locationURI>
+		</link>
+		<link>
+			<name>gpio.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/tiva-c/driverlib/gpio.h</locationURI>
+		</link>
+		<link>
+			<name>hw_memmap.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/tiva-c/inc/hw_memmap.h</locationURI>
+		</link>
+		<link>
+			<name>hw_types.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/tiva-c/inc/hw_types.h</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

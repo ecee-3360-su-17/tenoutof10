@@ -58,7 +58,7 @@ void blink(int x){
     int total = len(mout);
 
     for(total, total>= 0, total--){
-        switch(words):
+        switch(words){
             case 1:
                 compare = mout & 0x10;
             case 2:
@@ -73,6 +73,7 @@ void blink(int x){
                 compare = mout & 0x20000000;
             default:
                 GPIOinWrite(GPIO_PORTF_BASE, RED_LED|BLUE_LED|GREEN_LED, BLUE_LED); \\invalid, will turn led blue
+        }
 
         if(compare == 1){
            GPIOPinWrite(GPIO_PORTF_BASE, RED_LED|BLUE_LED|GREEN_LED, RED_LED);\\turn on red LED for a 1
