@@ -1,7 +1,22 @@
-/*
+
+<<<<<<< HEAD
+
+/**
  * main.c
  */
+extern int fib(int n);
+int main(void)
+{
+    fib(5);
+	return 0;
+}
 
+//Blink LEd
+void blink(int n){
+    char pattern = convert_to_morse(n);
+    for (int i=0; i< _; i++){
+        int x = pattern % 10;
+=======
 #include <stdint.h>
 #include <stdbool.h>
 #include "inc/hw_types.h"
@@ -86,12 +101,22 @@ void blink(int x){
         }
         mout = mout << 1;
     }
+>>>>>>> aaf04dafdca846cfefd0aaf95682378bad289e15
 
+        pattern = pattern - x;
 
+        ___SET___LED___STATE___
+        ___WAIT between digits_____
+    }
+    ___LONG WAIT BETWEEN NUMBERS____
+    }
 }
 
-char convert_to_morose(int n){
-    switch(n){
+//convert to morse case
+// take in single digit and converts
+//into morose case binary
+char convert_to_morse(int n){
+    switch (n){
     case 0:
         return 0b11111;
         break;
@@ -123,5 +148,6 @@ char convert_to_morose(int n){
         return 0b11110;
         break;
     default:
-        break;
+        break
+    }
 }

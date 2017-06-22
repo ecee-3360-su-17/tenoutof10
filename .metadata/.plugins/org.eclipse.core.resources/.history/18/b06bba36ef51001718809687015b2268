@@ -1,0 +1,40 @@
+ .global fibonacci
+CHECK_0
+    cmp r0, #0
+    beq TOP
+CHECK_1
+	cmp R0, #1
+	beq TOP
+SAVE
+    push {lr}
+TOP
+    cmp r0, #0
+    beq L_ZERO
+    cmp r0, #1
+    beq ONE
+    bgt RECURSE
+L_ZERO
+	mov r0, #1
+	push {r0}
+	BL TOP
+ONE
+	mov r0, #1
+	push {r0}
+	bl TOP
+RECURSE
+	sub r0,r0, #1
+	bl TOP
+	sub r0, r0, #1
+    bl TOP
+	pop {r8}
+	pop {r9}
+	add r0, r8, r9
+	push {r0}
+EXIT
+    pop {r0}
+    pop {lr}
+    mov pc, lr
+
+
+
+

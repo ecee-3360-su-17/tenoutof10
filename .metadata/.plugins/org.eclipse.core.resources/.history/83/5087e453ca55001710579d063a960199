@@ -1,0 +1,37 @@
+ .global fibonacci
+fibonacci:
+check0:
+    cmp r0, #0
+    beq top
+check1:
+	cmp R0, #1
+	beq top
+save1:
+    push {lr}
+top:
+    cmp r0, #0
+    beq lzero
+    cmp r0, #1
+    beq one
+    bgt recurse
+lzero:
+	mov r0, #1
+	push {r0}
+	mov pc, lr
+one:
+	mov r0, #1
+	push {r0}
+	mov pc, lr
+recurse:
+	sub r0,r0, #1
+	bl top
+	sub r0, r0, #1
+    bl top
+	pop {r8}
+	pop {r9}
+	add r0, r8, r9
+	push {r0}
+exit:
+    pop {r0}
+    pop {lr}
+    mov pc, lr
